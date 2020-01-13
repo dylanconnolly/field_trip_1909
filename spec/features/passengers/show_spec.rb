@@ -32,4 +32,20 @@ RSpec.describe "passenger show page" do
 
     expect(current_path).to eq(flight_path(@southwest_2))
   end
+
+  it "has a form on the page to add a new flight by filling in a flight number" do
+
+    visit passenger_path(@dalvin)
+
+    within "#new-flight" do
+      fill_in :flight_number, with: "AA1"
+      click_on "Add Flight"
+    end
+
+    expect(current_path).to eq(passenger_path(@dalvin))
+
+    within "#flights" do
+      expect(page).to have_content(@american_1.number)
+    end
+  end
 end
