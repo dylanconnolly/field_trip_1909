@@ -47,5 +47,9 @@ RSpec.describe "passenger show page" do
     within "#flights" do
       expect(page).to have_content(@american_1.number)
     end
+
+    @american_1.reload
+
+    expect(@american_1.passengers.include?(@dalvin)).to eq(true)
   end
 end
