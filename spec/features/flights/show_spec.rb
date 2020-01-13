@@ -44,5 +44,15 @@ RSpec.describe "flight show page" do
 
     expect(page).to have_content("Minors: 1")
     expect(page).to have_content("Adults: 2")
+
+    visit flight_path(@southwest_2)
+
+    expect(page).to have_content("Minors: 0")
+    expect(page).to have_content("Adults: 2")
+
+    visit flight_path(@american_1)
+
+    expect(page).to have_content("Minors: 0")
+    expect(page).to have_content("Adults: 2")
   end
 end
