@@ -31,16 +31,22 @@ RSpec.describe Flight, type: :model do
       @american_1 = @american.flights.create(number: "AA1", date: "01/18/20", time: "0945", departure_city: "San Francisco", arrival_city: "Denver")
       @carl = @american_1.passengers.create!(name: "Carl", age: 65)
       @darcy = @american_1.passengers.create!(name: "Darcy", age: 42)
-      @american_1.passengers << @dalvin
     end
 
     it "#minors" do
       expect(@southwest_1.minors).to eq(1)
 
       expect(@southwest_2.minors).to eq(0)
+
+      lucy = @southwest_2.passengers.create(name: "Lucy", age: 17)
+
+      @southwest_2.reload
+
+      expect(@southwest_2.minors).to eq(1)
     end
 
     it "#adults" do
+      rob = @american_1.passengers.create(name: "Rob", age: 18)
       expect(@southwest_1.adults).to eq(2)
       expect(@southwest_2.adults).to eq(2)
       expect(@american_1.adults).to eq(3)
