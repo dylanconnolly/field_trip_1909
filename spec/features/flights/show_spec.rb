@@ -21,7 +21,7 @@ RSpec.describe "flight show page" do
 
   it "lists all of the flight's info as well as the airline name and a list of passengers" do
 
-    visit "/flights/#{@southwest_1}"
+    visit "/flights/#{@southwest_1.id}"
 
     expect(page).to have_content(@southwest_1.number)
     expect(page).to have_content(@southwest_1.date)
