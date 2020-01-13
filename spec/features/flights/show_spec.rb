@@ -21,7 +21,7 @@ RSpec.describe "flight show page" do
 
   it "lists all of the flight's info as well as the airline name and a list of passengers" do
 
-    visit "/flights/#{@southwest_1.id}"
+    visit flight_path(@southwest_1)
 
     expect(page).to have_content(@southwest_1.number)
     expect(page).to have_content(@southwest_1.date)
@@ -36,5 +36,13 @@ RSpec.describe "flight show page" do
     expect(page).to_not have_content(@american_1.number)
     expect(page).to_not have_content(@dalvin.name)
     expect(page).to_not have_content(@carl.name)
+  end
+
+  it "lists the number of minors (age < 18) on the flight and the number of adults" do
+
+    visit flight_path(@southwest_1)
+
+    expect(page).to have_content("Minors: 1")
+    expect(page).to have_content("Adults: 2")
   end
 end
