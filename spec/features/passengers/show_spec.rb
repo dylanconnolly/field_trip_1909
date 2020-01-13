@@ -21,7 +21,7 @@ RSpec.describe "passenger show page" do
 
   it "displays that passenger's name and has a section of the page that lists all of that passenger's flight numbers which link to flight show page" do
 
-    visit passenger_page(@bob)
+    visit passenger_path(@bob)
 
     expect(page).to have_content(@bob.name)
 
@@ -30,6 +30,6 @@ RSpec.describe "passenger show page" do
       click_link(@southwest_2.number)
     end
 
-    expect(current_path).to eq(flight_page(@southwest_2))
+    expect(current_path).to eq(flight_path(@southwest_2))
   end
 end
