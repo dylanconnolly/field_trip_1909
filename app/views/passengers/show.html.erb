@@ -8,3 +8,12 @@
     <% end %>
   </ul>
 </section>
+
+<section id="new-flight">
+  <p>Add Flight:</p>
+  <%= form_tag passenger_path(@passenger), method: :patch do %>
+    <%= label_tag :flight_number %>
+    <%= text_field_tag :flight_number %>
+    <%= submit_tag "Add Flight" %>
+  <% end %>
+</section>
